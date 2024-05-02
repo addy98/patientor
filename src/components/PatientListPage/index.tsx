@@ -13,10 +13,10 @@ import patientService from "../../services/patients";
 interface Props {
   patients : Patient[]
   setPatients: React.Dispatch<React.SetStateAction<Patient[]>>
-  patientClickHandler: (patient: Patient) => void
+  handlePatientClick: (patient: Patient) => void
 }
 
-const PatientListPage = ({ patients, setPatients, patientClickHandler } : Props ) => {
+const PatientListPage = ({ patients, setPatients, handlePatientClick } : Props ) => {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [error, setError] = useState<string>();
@@ -69,7 +69,7 @@ const PatientListPage = ({ patients, setPatients, patientClickHandler } : Props 
           {Object.values(patients).map((patient: Patient) => (
             <TableRow key={patient.id}>
               <TableCell>
-                <Link to={`/${patient.id}`} onClick={() => patientClickHandler(patient)}>{patient.name}</Link>
+                <Link to={`/${patient.id}`} onClick={() => handlePatientClick(patient)}>{patient.name}</Link>
               </TableCell>
               <TableCell>{patient.gender}</TableCell>
               <TableCell>{patient.occupation}</TableCell>

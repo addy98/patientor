@@ -12,11 +12,11 @@ const getAll = async () => {
 };
 
 const getPatient = async (id: string) => {
-  const patient = await axios.get<Patient>(
+  const { data } = await axios.get<Patient>(
     `${apiBaseUrl}/patients/${id}`
   );
-
-  return patient;
+  
+  return data;
 }
 
 const create = async (object: PatientFormValues) => {

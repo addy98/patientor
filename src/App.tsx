@@ -25,8 +25,9 @@ const App = () => {
     
   }, []);
 
-  const patientClickHandler = (patient: Patient) => {
-    setPatient(patient)
+  const handlePatientClick = async (patient: Patient) => {
+    const clickedPatient = await patientService.getPatient(patient.id)
+    setPatient(clickedPatient)
   }
   
   return (
@@ -41,7 +42,7 @@ const App = () => {
           </Button>
           <Divider hidden />
           <Routes>
-            <Route path="/" element={<PatientListPage patients={patients} setPatients={setPatients} patientClickHandler={patientClickHandler} />} />
+            <Route path="/" element={<PatientListPage patients={patients} setPatients={setPatients} handlePatientClick={handlePatientClick} />} />
             <Route path="/:id" element={<PatientPage patient={patient} />} />
           </Routes>
         </Container>
